@@ -3,23 +3,21 @@ package com.example.task6;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Circle extends Shape {
+public class Rectangle extends Shape {
 
-    private double radius ;
-
-    public Circle(double radius) {
+    public Rectangle() {
         type = "Прямоугольник";
-        this.radius = radius;
     }
 
     //  рисует прямоугольник на Canvas
     public void draw(GraphicsContext gr, Double poinX, Double poinY) {
-        gr.setFill(Color.BLACK);
-        gr.fillOval(poinX - radius, poinY - radius, radius * 2, radius * 2);
+        gr.setFill(Color.RED);
+        gr.fillPolygon(new double[]{poinX, poinX + 25, poinX + 25, poinX},
+                new double[]{poinY, poinY, poinY + 75, poinY + 75}, 4);
     }
 
     public String toString() {
-        return "Circle";
+        return "Rectangle";
     }
 
 }
