@@ -26,8 +26,11 @@ public class HelloController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Rectangle rectangle = new Rectangle();
         Circle circle = new Circle(50);
+        Square square = new Square(60);
+        Pentagon pentagon = new Pentagon(30);
+        Triangle triangle = new Triangle(40);
 
-        items = FXCollections.observableArrayList(rectangle, circle);
+        items = FXCollections.observableArrayList(rectangle, circle, square, pentagon, triangle);
         listView.setItems(items);
 
         // Устанавливается режим выбора в ListView на SINGLE, что означает,

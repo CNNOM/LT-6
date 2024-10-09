@@ -3,31 +3,26 @@ package com.example.task6;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Triangle implements Shape {
+public class Triangle extends Shape {
     private double side;
     private Color color;
 
-    public Triangle(double side, Color color) {
+    public Triangle(double side) {
         this.side = side;
-        this.color = color;
+        this.type = "Треугольник";
     }
 
     @Override
-    public void draw(GraphicsContext gc) {
-        gc.setFill(color);
+    public void draw(GraphicsContext gc, Double poinX, Double poinY) {
+        gc.setFill(color.BLUE);
         double height = side * Math.sqrt(3) / 2; // Высота равностороннего треугольника
-        double[] xPoints = {100, 100 + side / 2, 100 + side};
-        double[] yPoints = {100 + height, 100, 100 + height};
+        double[] xPoints = {poinX, poinX + side / 2, poinX + side};
+        double[] yPoints = {poinY + height, poinY, poinY + height};
         gc.fillPolygon(xPoints, yPoints, 3);
     }
 
     @Override
-    public void descriptor() {
-        System.out.println("Треугольник");
-    }
-
-    @Override
-    public void setColor(Color color) {
-        this.color = color;
+    public String toString() {
+        return "Triangle";
     }
 }

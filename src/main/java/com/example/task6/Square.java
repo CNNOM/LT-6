@@ -3,28 +3,23 @@ package com.example.task6;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Square implements Shape {
+public class Square extends Shape {
     private double side;
     private Color color;
 
-    public Square(double side, Color color) {
+    public Square(double side) {
         this.side = side;
-        this.color = color;
+        this.type = "Квадрат";
     }
 
     @Override
-    public void draw(GraphicsContext gc) {
-        gc.setFill(color);
-        gc.fillRect(100, 100, side, side);
+    public void draw(GraphicsContext gc, Double poinX, Double poinY) {
+        gc.setFill(color.OLIVEDRAB);
+        gc.fillRect(poinX, poinY, side, side);
     }
 
     @Override
-    public void descriptor() {
-        System.out.println("Квадрат");
-    }
-
-    @Override
-    public void setColor(Color color) {
-        this.color = color;
+    public String toString() {
+        return "Square";
     }
 }
