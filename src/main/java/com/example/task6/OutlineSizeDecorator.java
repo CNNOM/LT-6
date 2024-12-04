@@ -11,9 +11,9 @@ public class OutlineSizeDecorator extends ShapeDecorator {
     }
 
     @Override
-    public void draw(GraphicsContext gr, double x, double y) {
+    public void draw(GraphicsContext gr, double x, double y, double opacity) {
         gr.setLineWidth(outlineSize);
-        super.draw(gr, x, y);
+        super.draw(gr, x, y, opacity);
         gr.stroke(); // Убедитесь, что контур отрисовывается
     }
 }

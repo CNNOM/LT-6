@@ -12,9 +12,9 @@ public class OutlineColorDecorator extends ShapeDecorator {
     }
 
     @Override
-    public void draw(GraphicsContext gr, double x, double y) {
+    public void draw(GraphicsContext gr, double x, double y, double opacity) {
         gr.setStroke(outlineColor);
-        super.draw(gr, x, y);
+        super.draw(gr, x, y, opacity);
         gr.stroke(); // Убедитесь, что контур отрисовывается
     }
 }

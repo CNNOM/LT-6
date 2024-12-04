@@ -10,10 +10,11 @@ public class Triangle extends Shape {
     }
 
     @Override
-    public void draw(GraphicsContext gr, double x, double y) {
+    public void draw(GraphicsContext gr, double x, double y, double opacity) {
         this.x = x;
         this.y = y;
         gr.setFill(color);
+        gr.setGlobalAlpha(opacity); // Устанавливаем прозрачность
         double[] xPoints = new double[3];
         double[] yPoints = new double[3];
         xPoints[0] = x;
@@ -24,6 +25,7 @@ public class Triangle extends Shape {
         yPoints[2] = y + size / 2;
         gr.fillPolygon(xPoints, yPoints, 3);
         gr.strokePolygon(xPoints, yPoints, 3); // Добавляем отрисовку контура
+        gr.setGlobalAlpha(1.0); // Сбрасываем прозрачность
     }
 
     @Override
