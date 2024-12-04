@@ -5,17 +5,19 @@ import javafx.scene.paint.Color;
 
 public class Square extends Shape {
     private double side;
-    private Color color;
 
-    public Square(double side) {
+    public Square(double side, Color color) {
+        super(side, color);
         this.side = side;
         this.type = "Квадрат";
     }
 
     @Override
-    public void draw(GraphicsContext gc, Double poinX, Double poinY) {
-        gc.setFill(color.OLIVEDRAB);
-        gc.fillRect(poinX, poinY, side, side);
+    public void draw(GraphicsContext gc, double x, double y) {
+        this.x = x;
+        this.y = y;
+        gc.setFill(color);
+        gc.fillRect(x, y, side, side);
     }
 
     @Override
