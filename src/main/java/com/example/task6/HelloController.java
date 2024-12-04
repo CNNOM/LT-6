@@ -106,10 +106,8 @@ public class HelloController implements Initializable {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (animationCheckBox.isSelected()) {
-                    updateOpacity();
-                    redrawCanvas();
-                }
+                updateOpacity();
+                redrawCanvas();
             }
         };
         timer.start();
