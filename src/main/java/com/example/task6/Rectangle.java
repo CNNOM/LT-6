@@ -1,13 +1,12 @@
 package com.example.task6;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 public class Rectangle extends Shape {
-
-    public Rectangle(double size, Color color) {
+    public Rectangle(double size, Paint color) {
         super(size, color);
-        this.type = "Прямоугольник";
+        this.type = "Rectangle";
     }
 
     @Override
@@ -15,7 +14,8 @@ public class Rectangle extends Shape {
         this.x = x;
         this.y = y;
         gr.setFill(color);
-        gr.fillRect(x, y, size, size);
+        gr.fillRect(x - size / 2, y - size / 2, size * 1.5, size);
+        gr.strokeRect(x - size / 2, y - size / 2, size * 1.5, size); // Добавляем отрисовку контура
     }
 
     @Override
