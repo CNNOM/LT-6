@@ -58,6 +58,7 @@ public class HelloController implements Initializable {
         }
     }
 
+
     public void cleanCan() {
         GraphicsContext gr = canvas.getGraphicsContext2D();
         gr.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
