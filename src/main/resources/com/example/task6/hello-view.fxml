@@ -4,6 +4,8 @@
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 
 <VBox alignment="CENTER" prefHeight="520.0" prefWidth="279.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.task6.HelloController">
     <padding>
@@ -13,8 +15,33 @@
     <Label text="Size:" />
     <TextField fx:id="sizeField" />
     <Button text="Применить размер" onAction="#applySize" />
-    <Label text="Color:" />
-    <ColorPicker fx:id="colorPicker" />
+    <Label text="Outline Color:" />
+    <ColorPicker fx:id="outlineColorPicker" />
+    <Label text="Outline Size:" />
+    <TextField fx:id="outlineSizeField" />
+    <Label text="Fill Type:" />
+    <ComboBox fx:id="fillTypeComboBox">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="solid" />
+                <String fx:value="gradient" />
+                <String fx:value="pattern" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <VBox fx:id="solidColorBox" visible="false">
+        <Label text="Solid Color:" />
+        <ColorPicker fx:id="solidColorPicker" />
+    </VBox>
+    <VBox fx:id="gradientColorBox" visible="false">
+        <Label text="Gradient Colors:" />
+        <ColorPicker fx:id="gradientColorPicker1" />
+        <ColorPicker fx:id="gradientColorPicker2" />
+    </VBox>
+    <VBox fx:id="patternColorBox" visible="false">
+        <Label text="Pattern:" />
+        <!-- Добавьте элементы управления для выбора паттерна, если необходимо -->
+    </VBox>
     <HBox alignment="CENTER">
         <Button text="←" onAction="#undo" />
         <Button text="→" onAction="#redo" />

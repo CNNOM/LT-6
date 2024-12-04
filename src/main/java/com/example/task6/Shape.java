@@ -1,16 +1,16 @@
 package com.example.task6;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 public abstract class Shape implements Cloneable {
     protected String type;
     protected double size;
-    protected Color color;
+    protected Paint color; // Изменено на Paint
     protected double x;
     protected double y;
 
-    public Shape(double size, Color color) {
+    public Shape(double size, Paint color) { // Изменено на Paint
         this.size = size;
         this.color = color;
     }
