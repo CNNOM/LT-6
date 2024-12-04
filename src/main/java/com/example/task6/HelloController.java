@@ -22,6 +22,8 @@ public class HelloController implements Initializable {
 
     private ObservableList<Shape> items;
 
+    private boolean isDrawing = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Rectangle rectangle = new Rectangle();
@@ -37,11 +39,29 @@ public class HelloController implements Initializable {
         // что пользователь может выбрать только один элемент за раз
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, this::addShape);
+        canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, this::onMousePressed);
+        canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::onMouseDragged);
+        canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, this::onMouseReleased);
     }
 
+    private void onMousePressed(MouseEvent event) {
+        isDrawing = true;
+        drawShape(event);
+    }
+
+    private void onMouseDragged(MouseEvent event) {
+        if (isDrawing) {
+            drawShape(event);
+        }
+    }
+
+    private void onMouseReleased(MouseEvent event) {
+        isDrawing = false;
+    }
+
+
     @FXML
-    public void addShape(MouseEvent event) {
+    public void drawShape(MouseEvent event) {
         System.out.println("Mouse event occurred at: " + event.getX() + ", " + event.getY());
 
         GraphicsContext gr = canvas.getGraphicsContext2D();
