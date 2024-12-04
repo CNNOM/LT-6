@@ -43,6 +43,7 @@
             <Label text="Pattern:" />
             <!-- Добавьте элементы управления для выбора паттерна, если необходимо -->
         </VBox>
+        <CheckBox fx:id="animationCheckBox" text="Добавить анимацию" />
         <HBox alignment="CENTER">
             <Button text="←" onAction="#undo" />
             <Button text="→" onAction="#redo" />

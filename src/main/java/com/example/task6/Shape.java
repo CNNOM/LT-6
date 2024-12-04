@@ -1,7 +1,5 @@
 package com.example.task6;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 
@@ -11,7 +9,7 @@ public abstract class Shape implements Cloneable {
     protected Paint color; // Изменено на Paint
     protected double x;
     protected double y;
-    protected DoubleProperty opacity = new SimpleDoubleProperty(1.0); // Добавлено свойство opacity
+    protected boolean hasAnimation; // Добавлено поле для хранения информации о наличии анимации
 
     public Shape(double size, Paint color) { // Изменено на Paint
         this.size = size;
@@ -28,23 +26,19 @@ public abstract class Shape implements Cloneable {
         return y;
     }
 
-    public DoubleProperty opacityProperty() { // Добавлен метод для получения свойства opacity
-        return opacity;
+    public boolean hasAnimation() {
+        return hasAnimation;
     }
 
-    public double getOpacity() { // Добавлен метод для получения значения opacity
-        return opacity.get();
-    }
-
-    public void setOpacity(double opacity) { // Добавлен метод для установки значения opacity
-        this.opacity.set(opacity);
+    public void setHasAnimation(boolean hasAnimation) {
+        this.hasAnimation = hasAnimation;
     }
 
     @Override
     public Shape clone() {
         try {
             Shape cloned = (Shape) super.clone();
-            cloned.opacity = new SimpleDoubleProperty(this.opacity.get()); // Клонируем свойство opacity
+            cloned.hasAnimation = this.hasAnimation; // Клонируем поле hasAnimation
             return cloned;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();

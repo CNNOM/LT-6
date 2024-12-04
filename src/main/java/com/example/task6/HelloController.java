@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -66,6 +67,9 @@ public class HelloController implements Initializable {
     @FXML
     private VBox patternColorBox;
 
+    @FXML
+    private CheckBox animationCheckBox;
+
     private ObservableList<Shape> items;
     private boolean isDrawing = false;
     private double currentSize = 50; // Переменная для хранения текущего размера
@@ -102,8 +106,10 @@ public class HelloController implements Initializable {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                updateOpacity();
-                redrawCanvas();
+                if (animationCheckBox.isSelected()) {
+                    updateOpacity();
+                    redrawCanvas();
+                }
             }
         };
         timer.start();
@@ -157,7 +163,10 @@ public class HelloController implements Initializable {
             newShape.x = event.getX();
             newShape.y = event.getY();
 
-            newShape.draw(canvas.getGraphicsContext2D(), event.getX(), event.getY(), opacity);
+            // Устанавливаем значение hasAnimation для новой фигуры
+            newShape.setHasAnimation(animationCheckBox.isSelected());
+
+            newShape.draw(canvas.getGraphicsContext2D(), event.getX(), event.getY(), animationCheckBox.isSelected() ? opacity : 1.0);
 
             shapeStack.push(newShape);
         } else {
@@ -205,7 +214,7 @@ public class HelloController implements Initializable {
         GraphicsContext gr = canvas.getGraphicsContext2D();
         gr.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (Shape shape : shapeStack) {
-            shape.draw(gr, shape.getX(), shape.getY(), opacity);
+            shape.draw(gr, shape.getX(), shape.getY(), shape.hasAnimation() ? opacity : 1.0);
         }
     }
 
