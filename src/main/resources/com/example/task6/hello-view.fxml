@@ -15,6 +15,9 @@
     <Button text="Применить размер" onAction="#applySize" />
     <Label text="Color:" />
     <ColorPicker fx:id="colorPicker" />
-    <Button text="←" onAction="#undo" />
+    <HBox alignment="CENTER">
+        <Button text="←" onAction="#undo" />
+        <Button text="→" onAction="#redo" />
+    </HBox>
     <Canvas fx:id="canvas" height="200" style="-fx-border-color: black; -fx-border-width: 2px;" width="600" />
 </VBox>

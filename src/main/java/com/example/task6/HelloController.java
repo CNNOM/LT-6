@@ -25,6 +25,8 @@ public class HelloController implements Initializable {
 
     //    private Queue<Shape> shapeQueue = new LinkedList<>();
     private Stack<Shape> shapeStack = new Stack<>();
+    private Stack<Shape> redoStack = new Stack<>();
+
 
     @FXML
     private Canvas canvas;
@@ -36,6 +38,7 @@ public class HelloController implements Initializable {
     private ColorPicker colorPicker;
 
     private ObservableList<Shape> items;
+
     private boolean isDrawing = false;
     private double currentSize = 50; // Переменная для хранения текущего размера
 
@@ -111,6 +114,7 @@ public class HelloController implements Initializable {
 
 //        shapeQueue.clear();
         shapeStack.clear();
+        redoStack.clear();
     }
 
     @FXML
@@ -121,7 +125,17 @@ public class HelloController implements Initializable {
 //        }
 
         if (!shapeStack.isEmpty()) {
-            shapeStack.pop();
+            Shape lastShape = shapeStack.pop();
+            redoStack.push(lastShape);
+            redrawCanvas();
+        }
+    }
+
+    @FXML
+    public void redo() {
+        if (!redoStack.isEmpty()) {
+            Shape lastUndoneShape = redoStack.pop();
+            shapeStack.push(lastUndoneShape);
             redrawCanvas();
         }
     }
