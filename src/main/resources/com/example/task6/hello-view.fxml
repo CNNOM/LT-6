@@ -51,5 +51,6 @@
     </VBox>
     <HBox style="-fx-border-color: black; -fx-border-width: 2px;">
         <Canvas fx:id="canvas" height="1000" width="600" style="-fx-border-color: black; -fx-border-width: 2px; -fx-background-color: blue;" />
+        <Button text="Clean" onAction="#cleanCan" />
     </HBox>
 </HBox>
