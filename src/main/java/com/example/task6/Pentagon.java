@@ -5,24 +5,26 @@ import javafx.scene.paint.Color;
 
 public class Pentagon extends Shape {
     private double side;
-    private Color color;
 
-    public Pentagon(double side) {
+    public Pentagon(double side, Color color) {
+        super(side, color);
         this.side = side;
         this.type = "Пятиугольник";
     }
 
     @Override
-    public void draw(GraphicsContext gc, Double poinX, Double poinY) {
-        gc.setFill(color.KHAKI);
+    public void draw(GraphicsContext gc, double x, double y) {
+        this.x = x;
+        this.y = y;
+        gc.setFill(color);
         double[] xPoints = new double[5];
         double[] yPoints = new double[5];
-        double angle = Math.PI / 180 * 72; // Угол между сторонами пятиугольника
-        double radius = side / (2 * Math.sin(Math.PI / 5)); // Радиус описанной окружности
+        double angle = Math.PI / 180 * 72;
+        double radius = side / (2 * Math.sin(Math.PI / 5));
 
         for (int i = 0; i < 5; i++) {
-            xPoints[i] = poinX + radius * Math.cos(angle * i);
-            yPoints[i] = poinY + radius * Math.sin(angle * i);
+            xPoints[i] = x + radius * Math.cos(angle * i);
+            yPoints[i] = y + radius * Math.sin(angle * i);
         }
 
         gc.fillPolygon(xPoints, yPoints, 5);
