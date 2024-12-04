@@ -1,26 +1,31 @@
 package com.example.task6;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 public class Triangle extends Shape {
-    private double side;
-
-    public Triangle(double side, Color color) {
-        super(side, color);
-        this.side = side;
-        this.type = "Треугольник";
+    public Triangle(double size, Paint color) {
+        super(size, color);
+        this.type = "Triangle";
     }
 
     @Override
-    public void draw(GraphicsContext gc, double x, double y) {
+    public void draw(GraphicsContext gr, double x, double y, double opacity) {
         this.x = x;
         this.y = y;
-        gc.setFill(color);
-        double height = side * Math.sqrt(3) / 2;
-        double[] xPoints = {x, x + side / 2, x + side};
-        double[] yPoints = {y + height, y, y + height};
-        gc.fillPolygon(xPoints, yPoints, 3);
+        gr.setFill(color);
+        gr.setGlobalAlpha(opacity); // Устанавливаем прозрачность
+        double[] xPoints = new double[3];
+        double[] yPoints = new double[3];
+        xPoints[0] = x;
+        yPoints[0] = y - size / 2;
+        xPoints[1] = x - size / 2;
+        yPoints[1] = y + size / 2;
+        xPoints[2] = x + size / 2;
+        yPoints[2] = y + size / 2;
+        gr.fillPolygon(xPoints, yPoints, 3);
+        gr.strokePolygon(xPoints, yPoints, 3); // Добавляем отрисовку контура
+        gr.setGlobalAlpha(1.0); // Сбрасываем прозрачность
     }
 
     @Override
